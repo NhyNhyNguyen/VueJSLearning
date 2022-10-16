@@ -67,17 +67,25 @@
         app.component(
             "custom-form",{
                 template:`
-                    <div>
+                    <form @submit.prevent="handleSubmit">
                     <h1>
                       {{ title }}
                     </h1>
-                        <input type = 'email'/>
-                        <input type = 'password'/>
-                    </div>
+                        <input type = 'email' v-model="email"/>
+                        <input type = 'password' v-model="password"/>
+                    <button >Submit</button>
+                    </form>
                 `,
                 data: function (){
                     return {
-                        title: "Login Form"
+                        title: "Login Form",
+                        email: 'nhi@gmail.com',
+                        password:''
+                    }
+                },
+                methods:{
+                    handleSubmit:function (){
+                        console.log("Submit" , this.email, this.password)
                     }
                 }
             },

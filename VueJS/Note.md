@@ -38,5 +38,39 @@ https://vuejs.org/guide/quick-start.html#using-vue-from-cdn
 - @keyup.enter="greet(greeting)" => có thể passing biến
 #### @click.right
 - @click.prevent.stop
+####
+- @submit.prevent: prevent chặn các default event -> case này chặn default event reload page khi submi
 ### Custom Component 
+- Dưới phần khai báo của vue component 
+- Trên mounted
+Noted: 
+- @submit : khi click form sẽ auto reload form. Là action auto browser
+```
+  app.component(
+            "custom-form",{
+                template:`
+                    <form @submit.prevent="handleSubmit">
+                    <h1>
+                      {{ title }}
+                    </h1>
+                        <input type = 'email'/>
+                        <input type = 'password'/>
+                    <button type="submit">Submit</button>
+                    </form>
+                `,
+                data: function (){
+                    return {
+                        title: "Login Form"
+                    }
+                },
+                methods:{
+                    handleSubmit:function (){
+                        console.log("Submit")
+                    }
+                }
+            },
+
+        )
+```
+
 
