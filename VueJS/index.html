@@ -71,16 +71,19 @@
                     <h1>
                       {{ title }}
                     </h1>
-                        <input type = 'email' v-model="email"/>
-                        <input type = 'password' v-model="password"/>
+                        <custom-input  v-model="email"  label="emailLabel"/>
+                        <custom-input  v-model="password"  label="passwordLabel"/>
                     <button >Submit</button>
                     </form>
                 `,
+                components:['custom-input'],
                 data: function (){
                     return {
                         title: "Login Form",
                         email: 'nhi@gmail.com',
-                        password:''
+                        password:'',
+                        emailLabel: "Email",
+                        passwordLabel: 'Password'
                     }
                 },
                 methods:{
@@ -90,6 +93,31 @@
                 }
             },
 
+        )
+        app.component(
+            "custom-input",{
+                template:
+                    `
+                <label>
+                    {{label}}
+                    <input type="text" v-model="inputValue"/>
+                </label>
+                `,
+                props:['label','modelValue'],
+                computed:{
+                    inputValue:{
+                        get(){
+                            return this.modelValue;
+                        },
+                        set(value){
+                            this.$emit('update:modelValue', value)
+                        }
+                    }
+                }
+                // data:{
+                //     inputValue: ""
+                // }
+            }
         )
         app.mount("#app");
     </script>

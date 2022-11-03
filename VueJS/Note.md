@@ -45,6 +45,7 @@ https://vuejs.org/guide/quick-start.html#using-vue-from-cdn
 - Trên mounted
 Noted: 
 - @submit : khi click form sẽ auto reload form. Là action auto browser
+- case bắt sự kiện trong multiselect ????
 ```
   app.component(
             "custom-form",{
@@ -72,5 +73,63 @@ Noted:
 
         )
 ```
+
+#### Component props
+- pass data from parent component to child component
+```
+    <custom-input  v-model="email" :model-value="email" v-bind:label="emailLabel"/>
+```
+- using v-bind to pass data from variable emailLabel to label
+- v-blind: cũng có thể use :
+- user *props* in child component list all things passing from parent to child
+- user *modelValue* to pass from value from parent to child component
+- props pass through the children they are immuteble. You can not change them in children, 
+- All the data in data just can change in the same component
+```
+   props:['label','modelValue'],
+```
+#### Component compute
+- pass data from child component to parent component
+- user *$emit => emit allow to emit event that other component can listen to, can pass data around application
+- computed: object U can put variable name at key, and whatever that value changed it can run getter and setter
+- *this.$emit('update:modelValue', value)* : cal update to modelValue, first is type event, second is value event
+```
+ inputValue:{
+                        get(){
+                            return this.modelValue;
+                        },
+                        set(value){
+                            this.$emit('update:modelValue', value)
+                        }
+                    }
+```
+```
+ app.component(
+            "custom-input",{
+                template:
+                    `
+                <label>
+                    {{label}}
+                    <input type="text" v-model="inputValue"/>
+                </label>
+                `,
+                props:['label','modelValue'],
+                computed:{
+                    inputValue:{
+                        get(){
+                            return this.modelValue;
+                        },
+                        set(value){
+                            this.$emit('update:modelValue', value)
+                        }
+                    }
+                }
+                // data:{
+                //     inputValue: ""
+                // }
+            }
+        )
+```
+
 
 
