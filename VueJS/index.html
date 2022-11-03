@@ -71,8 +71,8 @@
                     <h1>
                       {{ title }}
                     </h1>
-                        <custom-input  v-model="email"  label="emailLabel"/>
-                        <custom-input  v-model="password"  label="passwordLabel"/>
+                        <custom-input  v-model="email" :model-value="email" label="emailLabel"/>
+                        <custom-input  v-model="password" :model-value="password" label="passwordLabel"/>
                     <button >Submit</button>
                     </form>
                 `,

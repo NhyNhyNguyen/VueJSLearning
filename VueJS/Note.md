@@ -74,7 +74,7 @@ Noted:
         )
 ```
 
-#### Component props
+#### Component pr
 - pass data from parent component to child component
 ```
     <custom-input  v-model="email" :model-value="email" v-bind:label="emailLabel"/>
@@ -82,17 +82,13 @@ Noted:
 - using v-bind to pass data from variable emailLabel to label
 - v-blind: cũng có thể use :
 - user *props* in child component list all things passing from parent to child
-- user *modelValue* to pass from value from parent to child component
-- props pass through the children they are immuteble. You can not change them in children, 
-- All the data in data just can change in the same component
 ```
    props:['label','modelValue'],
 ```
 #### Component compute
 - pass data from child component to parent component
-- user *$emit => emit allow to emit event that other component can listen to, can pass data around application
+- user *$emit => ????
 - computed: object U can put variable name at key, and whatever that value changed it can run getter and setter
-- *this.$emit('update:modelValue', value)* : cal update to modelValue, first is type event, second is value event
 ```
  inputValue:{
                         get(){
