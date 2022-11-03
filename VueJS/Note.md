@@ -126,6 +126,8 @@ Noted:
             }
         )
 ```
+### Loop 
+- *<p v-for="str in inputs" > {{str}}</p>*
 
 
 

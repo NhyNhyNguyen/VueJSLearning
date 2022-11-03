@@ -74,6 +74,7 @@
                         <custom-input  v-model="email" :model-value="email" label="emailLabel"/>
                         <custom-input  v-model="password" :model-value="password" label="passwordLabel"/>
                     <button >Submit</button>
+                    <p v-for="(str,i) in inputs" :key="i"> {{i}}</p>
                     </form>
                 `,
                 components:['custom-input'],
@@ -83,7 +84,8 @@
                         email: 'nhi@gmail.com',
                         password:'',
                         emailLabel: "Email",
-                        passwordLabel: 'Password'
+                        passwordLabel: 'Password',
+                        inputs:["email", "password", "name"]
                     }
                 },
                 methods:{
