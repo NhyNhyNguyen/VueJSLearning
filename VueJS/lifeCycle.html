@@ -35,26 +35,23 @@
 </style>
 <body>
     <div id = "app" v-cloak>
-        <custom-form>
-        </custom-form>
-        <hr/>
-        <input v-model="greeting" @keyup.enter="greet(greeting)">
-
-        <div v-if="isVisible" class="box"></div>
-
-        <button  v-on:click="ontoggle">Toggle box</button>
 
     </div>
     <script src="https://unpkg.com/vue@next"></script>
     <script>
         let app = Vue.createApp({
+            template: `
+              <text-box v-if="isVisible" :isVisible="isVisible" ></text-box>
+              <button  v-on:click="ontoggle">Toggle box</button>
+            `,
             data: function (){
                 return {
                     greeting: "Hello Vue 3!",
-                    isVisible: false,
+                    isVisible: true,
                     isVisible2: false,
                 }
             },
+
             methods:{
                 ontoggle:function (){
                     this.isVisible = !this.isVisible;
@@ -64,71 +61,25 @@
                 }
             }
         })
-        app.component(
-            "custom-form",{
-                template:`
-                    <form @submit.prevent="handleSubmit">
-                    <h1>
-                      {{ title }}
-                    </h1>
-                        <custom-input v-for="(input, i) in inputs"
-                                      :key="i"
-                                      v-model="input.value"
-                                      :label="input.label"
-                                      :type="input.type"
-                        />
-                    <button >Submit</button>
-                    </form>
-                `,
-                components:['custom-input'],
-                data: function (){
-                    return {
-                        title: "Login Form",
-                        inputs:[
-                            {
-                                label:"email",
-                                value: "",
-                                type:"email"
-                            },
-                            {
-                                label:"password",
-                                value: "",
-                                type:"password"
-                            },
-                        ]
-                    }
-                },
-                methods:{
-                    handleSubmit:function (){
-                        console.log("Submit", this.inputs[0].value)
-                    }
-                }
-            },
 
-        )
-        app.component(
-            "custom-input",{
-                template:
-                    `
-                <label>
-                    {{label}}
-                    <input type="text" v-model="inputValue" :type="type"/>
-                </label>
+
+        app.component("text-box",{
+            template:
+                `
+                    <div v-if="isVisible"  class="box"></div>
+                    <div v-if="!isVisible"  class="box2"></div>
                 `,
-                props:['label','modelValue', "type"],
-                computed:{
-                    inputValue:{
-                        get(){
-                            return this.modelValue;
-                        },
-                        set(value){
-                            this.$emit('update:modelValue', value)
-                        }
-                    }
-                }
-                // data:{
-                //     inputValue: ""
-                // }
+            props: ["isVisible"],
+
+            create(){
+                console.log("Create");
+            },
+            mounted(){
+                console.log("Mounted");
+            },
+            unmounted(){
+                console.log("UnMounted");
+            }
             }
         )
         app.mount("#app");
