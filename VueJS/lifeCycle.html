@@ -59,6 +59,22 @@
                 greet(){
                     console.log(this.greeting);
                 }
+            },
+
+            created(){
+                console.log("App Create");
+            },
+            mounted(){
+                console.log("App Mounted");
+            },
+            updated(){
+                console.log("App Update");
+            },
+            beforeUpdated(){
+                console.log("App Before Updte");
+            },
+            unmounted(){
+                console.log("App UnMounted");
             }
         })
 
@@ -71,7 +87,7 @@
                 `,
             props: ["isVisible"],
 
-            create(){
+            created(){
                 console.log("Create");
             },
             mounted(){

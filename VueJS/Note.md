@@ -197,7 +197,10 @@ Noted:
 - Ex: function will call when item appear or disappear
 - Life cycle diagram of vue instance
 - ![img.png](img.png)
+#### Why need to use life cycle hook?
+- Check authorized
+- Call api 
+- Create or removing event
+- Getting or clean up data 
 
-
-
-
+### Vue app with vue 3 
